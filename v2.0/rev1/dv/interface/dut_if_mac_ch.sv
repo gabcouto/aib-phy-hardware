@@ -24,6 +24,7 @@ interface dut_if_mac_ch #(parameter DWIDTH = 40)
     logic                  m_wr_clk;
     logic                  m_rd_clk;
 
+    logic                  i_osc_clk
     logic                  ns_adapter_rstn;
     logic                  ns_mac_rdy;
     logic                  fs_mac_rdy;
