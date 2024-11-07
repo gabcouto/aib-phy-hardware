@@ -16,29 +16,6 @@ interface avalon_mm_if #(parameter AVMM_WIDTH = 32, BYTE_WIDTH = 4) (
     logic                        readdatavalid;
     logic                        waitrequest;
  
-   task cfg_read (
-       input  [16:0] addr,
-       input  [BYTE_WIDTH-1:0] be,
-       output [AVMM_WIDTH-1:0] rdata);
- 
-       begin
-           @(posedge clk);
-           write       <= 1'b0;
-           read        <= 1'b1;
-           address     <= addr;
-           byteenable  <= be;
-           @(negedge waitrequest);
-           @(posedge clk);
-           read        <= 1'b0;
-           @(posedge readdatavalid);
-           @(negedge clk);
-           rdata <= readdata;
-           @(posedge clk);
-           $display("%0t: READ_MM: address %x rdata =  %x", $time, addr, rdata);
- 
-       end
- 
-   endtask
      function void clear();
      begin
          write       <= 1'b0;
